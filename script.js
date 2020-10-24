@@ -25,9 +25,9 @@ const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
 };
 
-const ToggleDOM = function () {
-  inputGuess.disabled = inputGuess.disabled ? false : true;
-  btnCheck.disabled = btnCheck.disabled ? false : true;
+const inputEnable = function () {
+  inputGuess.disabled = false;
+  btnCheck.disabled = false;
 };
 
 const showModal = function () {
@@ -40,6 +40,11 @@ const showModal = function () {
 const closeModal = function () {
   document.querySelector('.modal').classList.add('hidden');
   document.querySelector('.overlay').classList.add('hidden');
+};
+
+const inputDisable = function () {
+  inputGuess.disabled = true;
+  btnCheck.disabled = true;
 };
 
 const gameLogic = function () {
@@ -59,8 +64,9 @@ const gameLogic = function () {
       highScore = score;
     }
     document.querySelector('.highscore').textContent = highScore;
-    ToggleDOM();
+
     showModal();
+    inputDisable();
   } else if (guess !== secretNumber) {
     if (score > 0) {
       displayMessage(guess > secretNumber ? 'Too High' : 'Too Low');
@@ -90,8 +96,8 @@ for (let i = 0; i < btnsAgain.length; i++) {
     document.querySelector('.number').textContent = '?';
     inputGuess.value = '';
     document.querySelector('body').style.backgroundColor = '#222';
-    ToggleDOM();
     closeModal();
+    inputEnable();
   });
 }
 
