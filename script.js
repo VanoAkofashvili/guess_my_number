@@ -19,7 +19,7 @@ const btnCheck = document.querySelector('.check');
 const inputGuess = document.querySelector('.guess');
 const btnsAgain = document.querySelectorAll('.again');
 
-console.log(document.querySelector('.modal'));
+console.log(secretNumber);
 
 const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
@@ -47,11 +47,6 @@ const inputDisable = function () {
   btnCheck.disabled = true;
 };
 
-const inputDisable = function () {
-  inputGuess.disabled = true;
-  btnCheck.disabled = true;
-};
-
 const gameLogic = function () {
   const guess = Number(inputGuess.value);
   console.log(secretNumber);
@@ -64,9 +59,8 @@ const gameLogic = function () {
     displayMessage('Correct Number!');
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.backgroundColor = '#60b347';
-
+    document.querySelector('.number').style.width = '30rem';
     if (score > highScore) {
-      inputDisable();
       highScore = score;
     }
     document.querySelector('.highscore').textContent = highScore;
@@ -98,7 +92,6 @@ for (let i = 0; i < btnsAgain.length; i++) {
     secretNumber = Math.trunc(Math.random() * 20) + 1;
     document.querySelector('.score').textContent = 20;
     displayMessage('Start guessing...');
-    inputEnable();
     document.querySelector('.number').style.width = '15rem';
     document.querySelector('.number').textContent = '?';
     inputGuess.value = '';
